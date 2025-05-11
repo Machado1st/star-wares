@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Star Wars Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            color: #FFD700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .quiz-progress {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-score {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .question-container {
+            margin-bottom: 2rem;
+        }
+
+        .question {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .options-container {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .option.correct {
+            background: rgba(0, 255, 0, 0.2);
+            border-color: #00ff00;
+        }
+
+        .option.incorrect {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff0000;
+        }
+
+        .quiz-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quiz-button {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .quiz-button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result-container {
+            text-align: center;
+            display: none;
+        }
+
+        .result-title {
+            color: #FFD700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-message {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-score {
+            color: #FFD700;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .restart-button {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-animated {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-animated:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <canvas class="stars-bg"></canvas>
+    
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars Logo">
+        </div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links animate__animated animate__fadeIn">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="movies.html">Filmes</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="books.html">Livros</a></li>
+            <li><a href="quiz.html" class="active">Quiz</a></li>
+            <li><a href="achievements.html">Conquistas</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+        </ul>
+        <button id="profile-btn" class="btn-animated" style="margin-left:1.5rem;">Perfil</button>
+    </nav>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="quiz-header">
+            <h1>Quiz Star Wars</h1>
+            <p>Teste seus conhecimentos sobre o universo Star Wars!</p>
+        </div>
+
+        <div class="quiz-controls">
+            <select id="difficulty" class="difficulty-select">
+                <option value="easy">Fácil</option>
+                <option value="medium">Médio</option>
+                <option value="hard">Difícil</option>
+            </select>
+            <div id="score" class="score-display">Pontuação: 0</div>
+        </div>
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div id="quiz-container" class="quiz-container">
+            <div class="question-container">
+                <h2 id="question" class="question-text"></h2>
+                <div id="options" class="options-container"></div>
+            </div>
+            <button id="next-btn" class="btn-animated" style="display: none;">Próxima Pergunta</button>
+        </div>
+        <div id="quiz-result" class="quiz-end" style="display:none"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📸</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Star Wars Portal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/quiz.js"></script>
+</body>
+</html> 

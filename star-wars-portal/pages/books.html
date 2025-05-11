@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros - Star Wars Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .book-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255,215,0,0.05);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .book-card:hover {
+            box-shadow: 0 8px 24px rgba(255,215,0,0.15), 0 2px 8px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-8px) scale(1.03);
+        }
+        .book-card img {
+            max-width: 80px;
+            max-height: 120px;
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0 auto 1rem auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+            object-fit: cover;
+        }
+        .book-card h3 {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .book-card p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .book-status {
+            margin-top: 1rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            color: #fff;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: relative;
+            height: 25px;
+            width: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #FFD700;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .status-text {
+            font-size: 1rem;
+            color: #FFD700;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container input:checked ~ .status-text {
+            color: #FFD700;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars Logo">
+        </div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links animate__animated animate__fadeIn">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="movies.html">Filmes</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="books.html" class="active">Livros</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="achievements.html">Conquistas</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="page-title animate__animated animate__fadeIn">Livros</h1>
+    <div class="books-grid">
+        <div class="book-card animate__animated animate__fadeInUp" data-book="thrawn">
+            <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL.jpg" alt="Thrawn" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22140%22><rect width=%22100%22 height=%22140%22 fill=%22%23ccc%22/><text x=%2250%22 y=%2270%22 font-size=%2212%22 text-anchor=%22middle%22 fill=%22%23666%22>Sem Imagem</text></svg>';">
+            <h3>Thrawn</h3>
+            <p>Timothy Zahn</p>
+            <div class="book-status">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="mark-book" data-book="thrawn">
+                    <span class="checkmark"></span>
+                    <span class="status-text">Já li</span>
+                </label>
+            </div>
+        </div>
+        <div class="book-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s" data-book="ahsoka">
+            <img src="https://m.media-amazon.com/images/I/81Q1b6QpYwL.jpg" alt="Ahsoka" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22140%22><rect width=%22100%22 height=%22140%22 fill=%22%23ccc%22/><text x=%2250%22 y=%2270%22 font-size=%2212%22 text-anchor=%22middle%22 fill=%22%23666%22>Sem Imagem</text></svg>';">
+            <h3>Ahsoka</h3>
+            <p>E.K. Johnston</p>
+            <div class="book-status">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="mark-book" data-book="ahsoka">
+                    <span class="checkmark"></span>
+                    <span class="status-text">Já li</span>
+                </label>
+            </div>
+        </div>
+        <div class="book-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s" data-book="bloodline">
+            <img src="https://m.media-amazon.com/images/I/91zF1gK5lGL.jpg" alt="Bloodline" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22140%22><rect width=%22100%22 height=%22140%22 fill=%22%23ccc%22/><text x=%2250%22 y=%2270%22 font-size=%2212%22 text-anchor=%22middle%22 fill=%22%23666%22>Sem Imagem</text></svg>';">
+            <h3>Bloodline</h3>
+            <p>Claudia Gray</p>
+            <div class="book-status">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="mark-book" data-book="bloodline">
+                    <span class="checkmark"></span>
+                    <span class="status-text">Já li</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📸</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Star Wars Portal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Carregar estado salvo
+            const readBooks = JSON.parse(localStorage.getItem('readBooks')) || {};
+            
+            // Configurar todas as checkboxes
+            document.querySelectorAll('.mark-book').forEach(checkbox => {
+                const bookId = checkbox.dataset.book;
+                
+                // Restaurar estado salvo
+                checkbox.checked = readBooks[bookId] || false;
+                
+                // Adicionar evento de mudança
+                checkbox.addEventListener('change', (e) => {
+                    const bookId = e.target.dataset.book;
+                    readBooks[bookId] = e.target.checked;
+                    localStorage.setItem('readBooks', JSON.stringify(readBooks));
+                    
+                    // Atualizar texto do status
+                    const statusText = e.target.nextElementSibling.nextElementSibling;
+                    statusText.textContent = e.target.checked ? 'Lido ✓' : 'Já li';
+                    
+                    // Adicionar animação
+                    const bookCard = e.target.closest('.book-card');
+                    if (e.target.checked) {
+                        bookCard.style.transform = 'scale(1.02)';
+                        setTimeout(() => {
+                            bookCard.style.transform = 'translateY(-8px) scale(1.03)';
+                        }, 200);
+                    } else {
+                        bookCard.style.transform = 'scale(1)';
+                        setTimeout(() => {
+                            bookCard.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

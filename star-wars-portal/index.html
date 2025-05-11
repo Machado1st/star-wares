@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/opening-crawl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Star Wars Opening Crawl -->
+    <div id="opening-crawl" class="opening-crawl">
+        <div class="crawl-content">
+            <div class="crawl-text">
+                <h2>STAR WARS</h2>
+                <h3>O Portal do Conhecimento</h3>
+                <p>
+                    Bem-vindo ao Portal Star Wars, onde o conhecimento da galáxia está ao seu alcance!
+                    
+                    Explore a saga completa através de filmes, séries e livros. Teste seus conhecimentos em nossos quizzes, conquiste títulos e torne-se um verdadeiro mestre Jedi.
+                    
+                    Que a Força esteja com você em sua jornada pelo universo Star Wars!
+                </p>
+            </div>
+        </div>
+    </div>
+    <canvas class="stars-bg"></canvas>
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars Logo">
+        </div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links animate__animated animate__fadeIn">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="pages/movies.html">Filmes</a></li>
+            <li><a href="pages/series.html">Séries</a></li>
+            <li><a href="pages/books.html">Livros</a></li>
+            <li><a href="pages/quiz.html">Quiz</a></li>
+            <li><a href="pages/achievements.html">Conquistas</a></li>
+            <li><a href="pages/rankings.html">Rankings</a></li>
+        </ul>
+        <button id="profile-btn" class="btn-animated" style="margin-left:1.5rem;">Perfil</button>
+    </nav>
+
+    <!-- Modal de Perfil do Usuário -->
+    <div id="profile-modal" class="profile-modal" style="display:none;">
+        <div class="profile-modal-content">
+            <span class="close-profile">&times;</span>
+            <h2>Perfil do Usuário</h2>
+            <div class="profile-avatar-select">
+                <label>Avatar:</label>
+                <div class="avatar-options">
+                    <img src="https://starwars-visualguide.com/assets/img/characters/1.jpg" class="avatar-option" data-avatar="1">
+                    <img src="https://starwars-visualguide.com/assets/img/characters/4.jpg" class="avatar-option" data-avatar="4">
+                    <img src="https://starwars-visualguide.com/assets/img/characters/20.jpg" class="avatar-option" data-avatar="20">
+                    <img src="https://starwars-visualguide.com/assets/img/characters/13.jpg" class="avatar-option" data-avatar="13">
+                </div>
+            </div>
+            <div class="profile-name-field">
+                <label for="profile-name">Nome:</label>
+                <input type="text" id="profile-name" maxlength="20" placeholder="Seu nome">
+            </div>
+            <div class="profile-stats">
+                <div><b>Pontos:</b> <span id="profile-points">0</span></div>
+                <div><b>Nível:</b> <span id="profile-level">Padawan</span></div>
+                <div class="profile-xp-bar">
+                    <div id="profile-xp-bar-inner"></div>
+                </div>
+            </div>
+            <button id="save-profile" class="btn-animated">Salvar</button>
+        </div>
+    </div>
+
+    <!-- Hero Section com Menu Interativo -->
+    <section class="hero">
+        <div class="hero-content animate__animated animate__fadeIn">
+            <h1>Bem-vindo ao Universo Star Wars</h1>
+            <p>Explore filmes, séries, personagens e muito mais!</p>
+        </div>
+        
+        <div class="menu-grid animate__animated animate__fadeInUp">
+            <a href="pages/movies.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-film"></i></div>
+                <h3>Filmes</h3>
+                <p>Explore a saga completa</p>
+            </a>
+            <a href="pages/series.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-tv"></i></div>
+                <h3>Séries</h3>
+                <p>Descubra as séries</p>
+            </a>
+            <a href="pages/quiz.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Quiz</h3>
+                <p>Teste seus conhecimentos</p>
+            </a>
+            <a href="pages/achievements.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Conquistas</h3>
+                <p>Desbloqueie conquistas</p>
+            </a>
+            <a href="pages/rankings.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Rankings</h3>
+                <p>Veja os melhores jogadores</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <!-- Removido: cards de filmes -->
+    <!-- Series Section -->
+    <!-- Removido: cards de séries -->
+    <!-- Books Section -->
+    <!-- Removido: cards de livros -->
+
+    <!-- Rankings Section -->
+    <section id="rankings" class="section">
+        <h2>Rankings</h2>
+        <div class="rankings-container">
+            <table class="rankings-table">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome</th>
+                        <th>Pontos</th>
+                        <th>Nível</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Luke Skywalker</td>
+                        <td>2534.7</td>
+                        <td>Mestre Jedi</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Obi-Wan Kenobi</td>
+                        <td>2312.3</td>
+                        <td>Mestre Jedi</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Yoda</td>
+                        <td>2108.9</td>
+                        <td>Mestre Jedi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📸</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Star Wars Portal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/opening-crawl.js"></script>
+</body>
+</html> 

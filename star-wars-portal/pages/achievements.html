@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conquistas - Star Wars Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .achievements-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: 3rem;
+            margin: 2rem 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+
+        .achievement-title {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-description {
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 10px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: #FFD700;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+
+        .achievement-locked {
+            opacity: 0.5;
+        }
+
+        .achievement-locked .achievement-icon {
+            color: #666;
+        }
+
+        .achievement-locked .achievement-title {
+            color: #666;
+        }
+
+        .achievement-locked .achievement-description {
+            color: #999;
+        }
+
+        .achievement-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 215, 0, 0.9);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .achievement-reward {
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .achievement-reward::before {
+            content: '🏆';
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="stars-bg"></canvas>
+    
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars Logo">
+        </div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links animate__animated animate__fadeIn">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="movies.html">Filmes</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="books.html">Livros</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="achievements.html" class="active">Conquistas</a></li>
+            <li><a href="rankings.html">Rankings</a></li>
+        </ul>
+        <button id="profile-btn" class="btn-animated" style="margin-left:1.5rem;">Perfil</button>
+    </nav>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <div class="achievements-header">
+            <h1>Conquistas</h1>
+            <p>Desbloqueie todas as conquistas para se tornar um verdadeiro mestre Jedi!</p>
+        </div>
+
+        <div class="achievements-grid">
+            <!-- Movie Master -->
+            <div class="achievement-card" id="movie-master">
+                <div class="achievement-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="achievement-info">
+                    <h3>Mestre do Cinema</h3>
+                    <p>Assista todos os filmes</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="movie-progress"></div>
+                    </div>
+                    <span class="progress-text">0/9</span>
+                </div>
+            </div>
+
+            <!-- Series Master -->
+            <div class="achievement-card" id="series-master">
+                <div class="achievement-icon">
+                    <i class="fas fa-tv"></i>
+                </div>
+                <div class="achievement-info">
+                    <h3>Mestre das Séries</h3>
+                    <p>Assista todas as séries</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="series-progress"></div>
+                    </div>
+                    <span class="progress-text">0/5</span>
+                </div>
+            </div>
+
+            <!-- Book Master -->
+            <div class="achievement-card" id="book-master">
+                <div class="achievement-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="achievement-info">
+                    <h3>Mestre dos Livros</h3>
+                    <p>Leia todos os livros</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="book-progress"></div>
+                    </div>
+                    <span class="progress-text">0/10</span>
+                </div>
+            </div>
+
+            <!-- Quiz Master -->
+            <div class="achievement-card" id="quiz-master">
+                <div class="achievement-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="achievement-info">
+                    <h3>Mestre do Quiz</h3>
+                    <p>Complete 10 quizzes com mais de 80% de acerto</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="quiz-progress"></div>
+                    </div>
+                    <span class="progress-text">0/10</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📸</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Star Wars Portal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/achievements.js"></script>
+</body>
+</html> 

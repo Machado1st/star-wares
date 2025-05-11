@@ -1,0 +1,129 @@
+/* Opening Crawl Styles */
+.opening-crawl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    perspective: 400px;
+    display: none;
+}
+
+body.opening-crawl-active .opening-crawl {
+    display: block;
+}
+
+.opening-crawl-hidden {
+    display: none;
+}
+
+.crawl-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 100%;
+}
+
+body.opening-crawl-active .crawl-content {
+    animation: crawl 35s linear forwards;
+}
+
+.crawl-text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    color: #FFD700;
+    font-family: 'Arial', sans-serif;
+    padding: 0 2rem;
+}
+
+.crawl-text h2 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.crawl-text h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.crawl-text p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes crawl {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 700px) {
+    .crawl-text {
+        padding: 0 1rem;
+    }
+
+    .crawl-text h2 {
+        font-size: 3rem;
+    }
+
+    .crawl-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .opening-crawl {
+        perspective: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .crawl-text {
+        padding: 0 0.5rem;
+    }
+
+    .crawl-text h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Replay button styles */
+.replay-crawl-btn {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid #FFD700;
+    color: #FFD700;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.replay-crawl-btn:hover {
+    background: rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+}
+
+.replay-crawl-btn i {
+    font-size: 1.1rem;
+} 

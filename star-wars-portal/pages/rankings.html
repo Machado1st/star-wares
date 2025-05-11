@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rankings - Star Wars Portal</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .rankings-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: 3rem;
+            margin: 2rem 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .rankings-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .tab-button.active {
+            background: #FFD700;
+            color: #000;
+            border-color: #FFD700;
+        }
+
+        .rankings-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .rankings-table th,
+        .rankings-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rankings-table th {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .rankings-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rank {
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .user-level {
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        .points {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .achievements {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .achievement-icon {
+            font-size: 1.2rem;
+        }
+
+        .rankings-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-value {
+            color: #FFD700;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="stars-bg"></canvas>
+    
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars Logo">
+        </div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links animate__animated animate__fadeIn">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="movies.html">Filmes</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="books.html">Livros</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="achievements.html">Conquistas</a></li>
+            <li><a href="rankings.html" class="active">Rankings</a></li>
+        </ul>
+        <button id="profile-btn" class="btn-animated" style="margin-left:1.5rem;">Perfil</button>
+    </nav>
+
+    <!-- Rankings Section -->
+    <section class="rankings-section">
+        <div class="rankings-header">
+            <h1>Rankings</h1>
+            <p>Veja os melhores fãs de Star Wars!</p>
+        </div>
+
+        <div class="rankings-container">
+            <div class="rankings-tabs">
+                <button class="tab-btn active" data-tab="global">Ranking Global</button>
+                <button class="tab-btn" data-tab="quiz">Melhores no Quiz</button>
+                <button class="tab-btn" data-tab="achievements">Conquistas</button>
+            </div>
+
+            <div class="rankings-content">
+                <!-- Global Rankings -->
+                <div class="ranking-tab active" id="global-rankings">
+                    <table class="rankings-table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Pontos</th>
+                                <th>Nível</th>
+                            </tr>
+                        </thead>
+                        <tbody id="global-rankings-body">
+                            <!-- Rankings will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Quiz Rankings -->
+                <div class="ranking-tab" id="quiz-rankings">
+                    <table class="rankings-table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Acertos</th>
+                                <th>Quizzes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quiz-rankings-body">
+                            <!-- Rankings will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Achievements Rankings -->
+                <div class="ranking-tab" id="achievements-rankings">
+                    <table class="rankings-table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Conquistas</th>
+                                <th>Progresso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="achievements-rankings-body">
+                            <!-- Rankings will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📸</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Star Wars Portal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/rankings.js"></script>
+</body>
+</html> 
